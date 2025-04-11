@@ -1,7 +1,7 @@
 # main.py
 import stats
-import os
 import sys
+import os
 
 
 def get_book_text(filepath):
@@ -29,10 +29,11 @@ def main():
     and prints the results.
     """
     # Ensure the 'books' directory exists in the same location as main.py
-    books_dir = 'books'
-    os.makedirs(books_dir, exist_ok=True)
-    filepath = os.path.join(books_dir, 'frankenstein.txt')
+    if len(sys.argv) != 2:
+        print('Usage: python3 main.py <path_to_book>')
+        sys.exit(1)
 
+    filepath = sys.argv[1]
     book_content = get_book_text(filepath)
 
     if isinstance(book_content, str) and not book_content.startswith("Error"):
